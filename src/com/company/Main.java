@@ -21,7 +21,11 @@ public class Main {
         //см. https://qna.habr.com/q/269359
         text = scanner.nextLine(); //работает верно
 
-        System.out.println(vigenere(shift_array, text, lang));
+        String a = vigenere(shift_array, text, lang, 1);
+        System.out.println("Шифровка: " + a);
+
+        System.out.println("Дешифровка: " + (vigenere(shift_array, a, lang, -1)));
+
 
     }
 
@@ -40,7 +44,12 @@ public class Main {
         return array;
     }
     
-    public static String vigenere(int[] shift_array, String text, String lang) {
+    public static String vigenere(int[] shift_array, String text, String lang, int determiner) {
+
+        //определяет, будет это шифровкой или дешифровкой
+        for (int b=0; b< shift_array.length; b++) {
+            shift_array[b] = shift_array[b]*determiner;
+        }
 
         //определение используемого языка
         //можно заменить на case и тогда языков может быть больше
